@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "PetShop"
+    }
+  },
+  "defaultProject": "PetShop",
+  "cli": {
+    "analytics": false
+  }
 }

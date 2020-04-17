@@ -8,9 +8,14 @@ import { Product } from '../models/product.model';
 })
 export class DataService {
 
-    constructor(private http: HttpClient) {}
+    public url = 'http://localhost:3000/v1';
+    constructor(private http: HttpClient) { }
 
-    getProducts(){
-        return this.http.get<Product[]>('http://localhost:3000/v1/products');
+    getProducts() {
+        return this.http.get<Product[]>(`${this.url}/products`);
+    }
+
+    authenticate(data) {
+        return this.http.post(`${this.url}/accounts/authenticate`, data);
     }
 }

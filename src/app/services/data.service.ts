@@ -7,11 +7,13 @@ import { Product } from '../models/product.model';
     providedIn: 'root'
 })
 export class DataService {
-
+    
+    public urlDefault = location.origin;
     public url = 'http://localhost:3000/v1';
     constructor(private http: HttpClient) { }
 
     getProducts() {
+        debugger;
         return this.http.get<Product[]>(`${this.url}/products`);
     }
 

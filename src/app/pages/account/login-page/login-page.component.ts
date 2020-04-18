@@ -27,7 +27,10 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    const token = localStorage.getItem('petshop.token');
+    if (token) {
+      this.refreshToken();
+    }
   }
 
   submit() {
@@ -42,5 +45,17 @@ export class LoginPageComponent implements OnInit {
       );
   }
 
+  refreshToken() {
+    console.log('Autenticando');
+    this.service.refreshToken()
+      .subscribe((data: any) => {
+        localStorage.setItem('petshop.token', data.token);
+        console.log(data);
+      },
+        (err) => {
+          localStorage.clear();
+        }
+      );
+  }
 
 }

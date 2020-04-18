@@ -9,6 +9,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class LoginPageComponent implements OnInit {
   public form: FormGroup;
+  public busy = false;
 
   constructor(
     private service: DataService, private fb: FormBuilder) {
@@ -34,26 +35,29 @@ export class LoginPageComponent implements OnInit {
   }
 
   submit() {
+    this.busy = true;
     this.service.authenticate(this.form.value)
       .subscribe((data: any) => {
         localStorage.setItem('petshop.token', data.token);
-        console.log(data);
+        this.busy = false;
       },
         (err) => {
-          console.log(err)
+          console.log(err);
+          this.busy = false;
         }
       );
   }
 
   refreshToken() {
-    console.log('Autenticando');
+    this.busy = true;
     this.service.refreshToken()
       .subscribe((data: any) => {
         localStorage.setItem('petshop.token', data.token);
-        console.log(data);
+        this.busy = false;
       },
         (err) => {
           localStorage.clear();
+          this.busy = true;
         }
       );
   }

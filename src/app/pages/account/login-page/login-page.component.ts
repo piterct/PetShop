@@ -19,7 +19,7 @@ export class LoginPageComponent implements OnInit {
         Validators.required
       ])],
       password: ['', Validators.compose([
-        Validators.minLength(11),
+        Validators.minLength(3),
         Validators.maxLength(11),
         Validators.required
       ])]
@@ -29,5 +29,18 @@ export class LoginPageComponent implements OnInit {
   ngOnInit() {
 
   }
+
+  submit() {
+    this.service.authenticate(this.form.value)
+      .subscribe((data: any) => {
+        localStorage.setItem('petshop.token', data.token);
+        console.log(data);
+      },
+        (err) => {
+          console.log(err)
+        }
+      );
+  }
+
 
 }

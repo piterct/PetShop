@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { CustomValidator } from 'src/app/validators/custom.validator';
 
 @Component({
   selector: 'app-login-page',
@@ -17,7 +18,8 @@ export class LoginPageComponent implements OnInit {
       username: ['', Validators.compose([
         Validators.minLength(14),
         Validators.maxLength(14),
-        Validators.required
+        Validators.required,
+        CustomValidator.isCpf()
       ])],
       password: ['', Validators.compose([
         Validators.minLength(6),

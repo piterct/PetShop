@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Product } from '../models/product.model';
 import { Security } from '../utils/security.util';
+import { tap, delay } from 'rxjs/operators'
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -9,7 +11,7 @@ import { Security } from '../utils/security.util';
 })
 export class DataService {
 
-    public urlDefault = location.origin;
+    private urlDefault = environment.apiUrl;
     public url = 'http://localhost:3000/v1';
     constructor(private http: HttpClient) { }
 

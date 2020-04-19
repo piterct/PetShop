@@ -5,13 +5,14 @@ import { Product } from 'src/app/models/product.model';
 
 
 
+
 @Component({
   selector: 'app-products-page',
   templateUrl: './products-page.component.html'
 })
 export class ProductsPageComponent implements OnInit {
   public products$: Observable<Product[]>;
- 
+
 
   constructor(private data: DataService) { }
 

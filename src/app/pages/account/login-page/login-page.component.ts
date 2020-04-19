@@ -44,8 +44,10 @@ export class LoginPageComponent implements OnInit {
 
   submit() {
     this.busy = true;
+    debugger;
     this.service.authenticate(this.form.value)
       .subscribe((data: any) => {
+        debugger;
         this.toastr.success(null, "Autenticação realizada com sucesso!")
         this.setUser(data.customer, data.token);
         this.busy = false;

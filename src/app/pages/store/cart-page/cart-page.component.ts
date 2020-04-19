@@ -14,6 +14,14 @@ export class CartPageComponent implements OnInit {
     this.loadCart();
   }
 
+  public total() {
+    let total = 0;
+    this.cart.items.forEach((item) => {
+      total += (item.price * item.quantity);
+    });
+    return total;
+  }
+
   public loadCart() {
     this.cart = CartUtil.get();
   }
@@ -24,7 +32,7 @@ export class CartPageComponent implements OnInit {
     CartUtil.update(this.cart);
   }
 
-  public clear(){
+  public clear() {
     CartUtil.clear();
     this.loadCart();
   }

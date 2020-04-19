@@ -8,7 +8,7 @@ export class ResetPasswordPageComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
 }

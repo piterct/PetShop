@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CustomValidator } from 'src/app/validators/custom.validator';
 import { Security } from 'src/app/utils/security.util';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login-page',
@@ -15,7 +16,11 @@ export class LoginPageComponent implements OnInit {
   public busy = false;
 
   constructor(
-    private router: Router, private service: DataService, private fb: FormBuilder) {
+    private router: Router,
+    private service: DataService,
+    private fb: FormBuilder,
+    private toastr: ToastrService
+  ) {
     this.form = this.fb.group({
       username: ['', Validators.compose([
         Validators.minLength(14),
@@ -41,12 +46,15 @@ export class LoginPageComponent implements OnInit {
     this.busy = true;
     this.service.authenticate(this.form.value)
       .subscribe((data: any) => {
+        this.toastr.success(null, "Autenticação realizada com sucesso!")
         this.setUser(data.customer, data.token);
         this.busy = false;
+        
       },
         (err) => {
-          console.log(err);
           this.busy = false;
+          this.toastr.error(err.message, "Não foi possível autenticar");
+          
         }
       );
   }

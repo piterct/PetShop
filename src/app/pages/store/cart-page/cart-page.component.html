@@ -8,7 +8,7 @@
         <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
                 <li class="uk-active">
-                    <a href="#">
+                    <a (click)="clear()">
                         <span class="uk-icon uk-margin-small-right" uk-icon="icon: close"></span>
                         Limpar Carrinho
                     </a>
@@ -18,30 +18,16 @@
     </nav>
 </div>
 <div class="uk-container">
-    <div class="uk-grid-small" uk-grid>
+    <div class="uk-grid-small" uk-grid *ngFor="let item of cart?.items">
         <div class="uk-width-expand" uk-leader>
-            <img src="https://placehold.it/64" class="uk-align-left" alt="">
-            <a href="#">Shampoo para pelos macios</a> <br>
-            <strong>2 unidades</strong>
+            <img src="{{ item.image }}" class="uk-align-left" alt="{{ item.product }}" width="64" height="64">
+            <a href="#">{{ item.product }}</a> <br>
+            <strong>{{ item.quantity }} unidade(s)</strong>
         </div>
         <div>
             <br>
-            $20.90
-            <a href="#" class="uk-button uk-button-link uk-align-right">
-                <span class="uk-icon" uk-icon="icon: close"></span>
-            </a>
-        </div>
-    </div>
-    <div class="uk-grid-small" uk-grid>
-        <div class="uk-width-expand" uk-leader>
-            <img src="https://placehold.it/64" class="uk-align-left" alt="">
-            <a href="#">Shampoo para pelos macios</a> <br>
-            <strong>2 unidades</strong>
-        </div>
-        <div>
-            <br>
-            $20.90
-            <a href="#" class="uk-button uk-button-link uk-align-right">
+            {{ item.price/100 | currency: 'BRL' }}
+            <a class="uk-button uk-button-link uk-align-right" (click)="remove(item)">
                 <span class="uk-icon" uk-icon="icon: close"></span>
             </a>
         </div>

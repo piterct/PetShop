@@ -2,8 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -51,8 +51,9 @@ import { AuthInterceptor } from './services/auth.interceptor';
     ToastrModule.forRoot(), //https://www.npmjs.com/package/ngx-toastr
     AppRoutingModule,
 
+
   ],
-  providers: [DataService, AuthService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
+  providers: [DataService, AuthService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

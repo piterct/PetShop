@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import {tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import { Security } from '../utils/security.util';
+import  Swal  from 'sweetalert2';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -26,8 +27,6 @@ export class AuthInterceptor implements HttpInterceptor {
         }
       });
  
-      console.log('Entrou no Intercept');
-
     return next.handle(request).pipe( tap(() => {},
       (err: any) => {
       if (err instanceof HttpErrorResponse) {
@@ -35,8 +34,28 @@ export class AuthInterceptor implements HttpInterceptor {
         if (err.status !== 401) {
          return;
         }
-        this.router.navigate(['login']);
+        this.alertExpirateSession();      
       }
     }));
   }
+
+   alertExpirateSession(){
+    Swal.fire({
+      icon: 'warning',
+      title: 'Oops...',
+      text: 'Sua sessão foi expirada!',
+      confirmButtonText: 'Ok',
+      confirmButtonColor: '#ff8429'
+    }).then((result) => {
+      if(result.value){
+        this.redirectForLogin();
+      }
+    })
+   }
+
+   redirectForLogin()
+   {    
+      this.router.navigate(['/login']); 
+   }
+
 }

@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,13 +17,13 @@ import { PetsPageComponent } from './pages/account/pets-page/pets-page.component
 import { ProductsPageComponent } from './pages/store/products-page/products-page.component';
 import { CartPageComponent } from './pages/store/cart-page/cart-page.component';
 import { FramePageComponent } from './pages/master/frame-page.component';
-import { HttpClientModule } from '@angular/common/http';
 import { ProductCardComponent } from './components/store/product-card/product-card.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
 import { MaskDirective } from './directives/mask.directive';
 import { DataService } from './services/data.service';
 import { AuthService } from './services/auth.service';
 import { ProfilePageComponent } from './pages/account/profile-page/profile-page.component';
+import { AuthInterceptor } from './services/auth.interceptor';
 
 
 @NgModule({
@@ -50,7 +52,7 @@ import { ProfilePageComponent } from './pages/account/profile-page/profile-page.
     AppRoutingModule,
 
   ],
-  providers: [DataService, AuthService],
+  providers: [DataService, AuthService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

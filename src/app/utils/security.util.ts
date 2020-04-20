@@ -46,4 +46,8 @@ export class Security {
         localStorage.removeItem('petshopuser');
         localStorage.removeItem('petshoptoken');
     }
+
+    public static clearToken() {
+        localStorage.removeItem('petshoptoken');
+    }
 }

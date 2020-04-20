@@ -37,26 +37,21 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.refreshToken();
-
+    //this.refreshToken();
   }
 
   submit() {
     this.busy = true;
-    debugger;
     this.service.authenticate(this.form.value)
       .subscribe((data: any) => {
-        debugger;
         this.toastr.success(null, "Autenticação realizada com sucesso!")
         this.setUser(data.customer, data.token);
         this.busy = false;
-        
       },
         (err) => {
+          debugger;
           this.busy = false;
-          this.toastr.error(err.message, "Não foi possível autenticar");
-          
+          this.toastr.error("Não foi possível autenticar");        
         }
       );
   }
@@ -83,6 +78,7 @@ export class LoginPageComponent implements OnInit {
   setUser(user, token) {
     Security.set(user, token);
     this.router.navigate(['/']);
+
   }
 
 }

@@ -5,6 +5,7 @@ import { DataService } from 'src/app/services/data.service';
 import { ToastrService } from 'ngx-toastr';
 import { CustomValidator } from 'src/app/validators/custom.validator';
 
+
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',
@@ -53,6 +54,7 @@ export class ProfilePageComponent implements OnInit {
           this.form.controls['email'].setValue(data.email);
         },
         (err) => {
+          debugger;
           console.log(err);
           this.busy = false;
         }

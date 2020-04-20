@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
-import { Observable } from 'rxjs';
+import { Observable, empty } from 'rxjs';
 import { Product } from 'src/app/models/product.model';
-
-
+import { catchError, delay } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -14,11 +14,16 @@ export class ProductsPageComponent implements OnInit {
   public products$: Observable<Product[]>;
 
 
-  constructor(private data: DataService) { }
+  constructor(private data: DataService, private toastr: ToastrService) { }
 
   ngOnInit() {
-    this.products$ = this.data.getProducts();
-
+    this.products$ = this.data.getProducts().pipe
+      (
+        catchError(error => {
+          this.toastr.error("Falha ao carregar os produtos!");
+          return empty();
+        })
+      );
   }
 
 

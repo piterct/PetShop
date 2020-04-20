@@ -34,7 +34,8 @@ export class AuthInterceptor implements HttpInterceptor {
         if (err.status !== 401) {
          return;
         }
-        this.alertExpirateSession();      
+        Security.clear();    
+        this.alertExpirateSession();
       }
     }));
   }

@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Product } from '../models/product.model';
-import { Security } from '../utils/security.util';
-import { tap, delay } from 'rxjs/operators'
 import { environment } from 'src/environments/environment';
 
 

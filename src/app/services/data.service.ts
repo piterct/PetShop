@@ -15,23 +15,24 @@ export class DataService {
     public apiUrl = 'http://localhost:3000/v1';
     constructor(private http: HttpClient) { }
 
-    public composeHeaders() {
-        const token = Security.getToken();
-        const headers = new HttpHeaders().set('Authorization', `bearer ${token}`);
-        return headers;
-    }
+   // public composeHeaders() {
+   //     const token = Security.getToken();
+   //     const headers = new HttpHeaders().set('Authorization', `bearer ${token}`);
+     //   return headers;
+  ///  }
 
     getProducts() {
         return this.http.get<Product[]>(`${this.apiUrl}/products`);
     }
 
     authenticate(data) {
+       debugger;
         return this.http.post(`${this.apiUrl}/accounts/authenticate`, data);
     }
     refreshToken() {
         return this.http.post(`${this.apiUrl}/accounts/refresh-token`,
-            null,
-            { headers: this.composeHeaders() });
+            null
+           // ,{ headers: this.composeHeaders() });
     }
 
     create(data) {
@@ -43,10 +44,12 @@ export class DataService {
     }
 
     getProfile() {
-        return this.http.get(`${this.apiUrl}/accounts`, { headers: this.composeHeaders() });
+        return this.http.get(`${this.apiUrl}/accounts`
+        //, { headers: this.composeHeaders() });
     }
 
     updateProfile(data) {
-        return this.http.put(`${this.apiUrl}/accounts`, data, { headers: this.composeHeaders() });
+        return this.http.put(`${this.apiUrl}/accounts`, data
+        //, { headers: this.composeHeaders() });
     }
 }

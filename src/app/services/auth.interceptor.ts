@@ -19,7 +19,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = Security.getToken();
-    debugger;
+    
      const  newRequest = request.clone({
         setHeaders: {
           'Content-Type': 'application/json',

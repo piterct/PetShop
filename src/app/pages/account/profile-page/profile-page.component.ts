@@ -54,7 +54,6 @@ export class ProfilePageComponent implements OnInit {
           this.form.controls['email'].setValue(data.email);
         },
         (err) => {
-          debugger;
           console.log(err);
           this.busy = false;
         }

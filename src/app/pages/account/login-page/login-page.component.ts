@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from 'src/app/services/data.service';
+import { DataService } from 'src/app/services/dataservices/data.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CustomValidator } from 'src/app/validators/custom.validator';
 import { Security } from 'src/app/utils/security.util';

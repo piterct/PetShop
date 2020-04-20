@@ -20,10 +20,10 @@ import { FramePageComponent } from './pages/master/frame-page.component';
 import { ProductCardComponent } from './components/store/product-card/product-card.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
 import { MaskDirective } from './directives/mask.directive';
-import { DataService } from './services/data.service';
-import { AuthService } from './services/auth.service';
+import { DataService } from './services/dataservices/data.service';
+import { AuthService } from './services/auth/auth.service';
 import { ProfilePageComponent } from './pages/account/profile-page/profile-page.component';
-import { AuthInterceptor } from './services/auth.interceptor';
+import { AuthInterceptor } from './services/auth/auth.interceptor';
 
 
 @NgModule({

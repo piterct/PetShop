@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DataService } from 'src/app/services/dataservices/data.service';
+import { DataService } from 'src/app/services/data.service';
 import { ToastrService } from 'ngx-toastr';
 import { CustomValidator } from 'src/app/validators/custom.validator';
 

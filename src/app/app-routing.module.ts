@@ -7,7 +7,7 @@ import { CartPageComponent } from './pages/store/cart-page/cart-page.component';
 import { PetsPageComponent } from './pages/account/pets-page/pets-page.component';
 import { SignupPageComponent } from './pages/account/signup-page/signup-page.component';
 import { ResetPasswordPageComponent } from './pages/account/reset-password-page/reset-password-page.component';
-import { AuthService } from './services/auth/auth.service';
+import { AuthGuard } from './guards/auth.guard';
 import { ProfilePageComponent } from './pages/account/profile-page/profile-page.component';
 
 
@@ -17,15 +17,15 @@ const routes: Routes = [
     component: FramePageComponent,
     children: [
       { path: '', component: ProductsPageComponent },
-      { path: 'cart', component: CartPageComponent, canActivate: [AuthService] },
-      { path: 'checkout', component: CartPageComponent, canActivate: [AuthService] }
+      { path: 'cart', component: CartPageComponent, canActivate: [AuthGuard] },
+      { path: 'checkout', component: CartPageComponent, canActivate: [AuthGuard] }
     ]
   },
 
   {
     path: 'account',
     component: FramePageComponent,
-    canActivate: [AuthService],
+    canActivate: [AuthGuard],
     children: [
       { path: '', component: ProfilePageComponent },
       { path: 'pets', component: PetsPageComponent, }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Security } from './utils/security.util';
-import { DataService } from './services/dataservices/data.service';
+import { DataService } from './services/data.service';
 import { Router } from '@angular/router';
 
 @Component({

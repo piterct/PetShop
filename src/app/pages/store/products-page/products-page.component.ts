@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from 'src/app/services/dataservices/data.service';
+import { DataService } from 'src/app/services/data.service';
 import { Observable, empty } from 'rxjs';
 import { Product } from 'src/app/models/product.model';
 import { catchError, delay } from 'rxjs/operators';
@@ -21,11 +21,13 @@ export class ProductsPageComponent implements OnInit {
       (
         catchError(error => {
           this.toastr.error("Falha ao carregar os produtos!");
+
           return empty();
         })
       );
   }
 
+  alertError
 
 
 }

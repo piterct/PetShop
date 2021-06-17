@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../models/product.model';
 import { environment } from 'src/environments/environment';
+import { Security } from '../utils/security.util';;
 
 
 @Injectable({
@@ -10,7 +11,9 @@ import { environment } from 'src/environments/environment';
 export class DataService {
 
     private apiUrl = environment.apiUrl;
+    private token = Security.getToken();
     //public apiUrl = 'http://localhost:3000/v1';
+
     constructor(private http: HttpClient) { }
 
 

@@ -21,10 +21,6 @@ export class DataService {
         return this.http.get<Product[]>(`${this.apiUrl}/products`);
     }
 
-    authenticate(data) {
-
-        return this.http.post(`${this.apiUrl}/accounts/authenticate`, data);
-    }
     refreshToken() {
         return this.http.post(`${this.apiUrl}/accounts/refresh-token`, null);
     }

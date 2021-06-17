@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CustomValidator } from 'src/app/validators/custom.validator';
 import { Security } from 'src/app/utils/security.util';
@@ -18,6 +19,7 @@ export class LoginPageComponent implements OnInit {
   constructor(
     private router: Router,
     private service: DataService,
+    private authenticateservice: AuthenticateService,
     private fb: FormBuilder,
     private toastr: ToastrService
   ) {
@@ -42,7 +44,7 @@ export class LoginPageComponent implements OnInit {
 
   submit() {
     this.busy = true;
-    this.service.authenticate(this.form.value)
+    this.authenticateservice.authenticate(this.form.value)
       .subscribe((data: any) => {
         this.toastr.success(null, "Autenticação realizada com sucesso!")
         this.setUser(data.customer, data.token);

@@ -16,7 +16,7 @@ export class AuthenticateService {
     constructor(private http: HttpClient) { }
 
     authenticate(data) {
-        return this.http.post(`${this.apiUrl}/ControleAcessoAplicacao/autenticar`, data, {
+        return this.http.post(`${this.apiUrl}/accounts/autenticar`, data, {
             headers: new HttpHeaders({
                 'Authorization': 'Bearer ' + this.token,
                 'Content-Type': 'application/json'

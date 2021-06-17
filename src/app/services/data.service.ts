@@ -9,8 +9,8 @@ import { environment } from 'src/environments/environment';
 })
 export class DataService {
 
-    private urlDefault = environment.apiUrl;
-    public apiUrl = 'http://localhost:3000/v1';
+    private apiUrl = environment.apiUrl;
+    //public apiUrl = 'http://localhost:3000/v1';
     constructor(private http: HttpClient) { }
 
 

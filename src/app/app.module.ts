@@ -21,10 +21,12 @@ import { ProductCardComponent } from './components/store/product-card/product-ca
 import { LoadingComponent } from './components/shared/loading/loading.component';
 import { MaskDirective } from './directives/mask.directive';
 import { DataService } from './services/data.service';
+import { AuthenticateService } from './services/authenticate.service';
 import { AuthGuard } from './guards/auth.guard';
 import { ProfilePageComponent } from './pages/account/profile-page/profile-page.component';
 import { AuthInterceptor } from './guards/auth.interceptor';
 import { ErrorInterceptor } from './guards/error-interceptor';
+
 
 
 @NgModule({
@@ -54,7 +56,7 @@ import { ErrorInterceptor } from './guards/error-interceptor';
 
 
   ],
-  providers: [DataService, AuthGuard,
+  providers: [DataService, AuthenticateService, AuthGuard,
      { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
      { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
   bootstrap: [AppComponent]

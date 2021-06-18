@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Product } from '../models/product.model';
 import { environment } from 'src/environments/environment';
 import { Security } from '../utils/security.util';;
@@ -26,7 +26,12 @@ export class DataService {
     }
 
     create(data) {
-        return this.http.post(`${this.apiUrl}/accounts`, data);
+        return this.http.post(`${this.apiUrl}/accounts`, data, {
+            headers: new HttpHeaders({
+                'Authorization': 'Bearer ' + this.token,
+                'Content-Type': 'application/json'
+            })
+        });
     }
 
     resetPassword(data) {

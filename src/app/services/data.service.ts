@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Product } from '../models/product.model';
 import { environment } from 'src/environments/environment';
-import { Security } from '../utils/security.util';;
+
 
 
 @Injectable({
@@ -11,7 +11,6 @@ import { Security } from '../utils/security.util';;
 export class DataService {
 
     private apiUrl = environment.apiUrl;
-    private token = Security.getToken();
     //public apiUrl = 'http://localhost:3000/v1';
 
     constructor(private http: HttpClient) { }
@@ -26,12 +25,7 @@ export class DataService {
     }
 
     create(data) {
-        return this.http.post(`${this.apiUrl}/accounts`, data, {
-            headers: new HttpHeaders({
-                'Authorization': 'Bearer ' + this.token,
-                'Content-Type': 'application/json'
-            })
-        });
+        return this.http.post(`${this.apiUrl}/accounts`, data);
     }
 
     resetPassword(data) {

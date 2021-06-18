@@ -51,7 +51,6 @@ export class LoginPageComponent implements OnInit {
         this.busy = false;
       },
         (err) => {
-          debugger;
           this.busy = false;
           this.toastr.error("Não foi possível autenticar");        
         }
